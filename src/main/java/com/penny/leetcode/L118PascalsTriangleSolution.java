@@ -24,10 +24,10 @@ import java.util.List;
  * @author 0-Vector
  * @date 2019/10/22 14:32
  */
-public class Problem118Solution {
+public class L118PascalsTriangleSolution {
     public List<List<Integer>> generate(int numRows) {
         if (numRows <= 0) {
-            return new ArrayList<>(1);
+            return new ArrayList<>(0);
         }
         List<List<Integer>> lists = new ArrayList<>(numRows);
         for (int rowIndex = 0; rowIndex < numRows; rowIndex++) {
