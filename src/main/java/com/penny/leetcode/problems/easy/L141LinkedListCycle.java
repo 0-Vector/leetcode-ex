@@ -1,4 +1,4 @@
-package com.penny.leetcode;
+package com.penny.leetcode.problems.easy;
 
 /**
  * 给定一个链表，判断链表中是否有环。
