@@ -1,5 +1,6 @@
 package com.penny.leetcode;
 
+import com.penny.leetcode.problems.easy.L118PascalsTriangleSolution;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
