@@ -17,21 +17,21 @@ public class L204CountPrimes {
         if (n <= 2) {
             return 0;
         }
+        int count = 0;
         boolean[] b = new boolean[n];
+        for (int i = 2 + 2; i < n; i += 2) {
+            b[i] = true;
+        }
         for (int i = 2; i < n; i++) {
             if (b[i]) {
                 continue;
+            } else {
+                count++;
             }
-            int times = i + i;
+            int times = i + i + i;
             while (times < b.length) {
                 b[times] = true;
-                times += i;
-            }
-        }
-        int count = 0;
-        for (int i = 2; i < n; i++) {
-            if (!b[i]) {
-                count++;
+                times += i + i;
             }
         }
         return count;
