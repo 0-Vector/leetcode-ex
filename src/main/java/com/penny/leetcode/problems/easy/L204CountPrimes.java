@@ -17,28 +17,29 @@ public class L204CountPrimes {
         if (n <= 2) {
             return 0;
         }
-        int count = 0;
+        int count = 1;
         boolean[] b = new boolean[n];
-        for (int i = 2 + 2; i < n; i += 2) {
+        for (int i = 4; i < n; i += 2) {
             b[i] = true;
         }
-        for (int i = 2; i < n; i++) {
+        for (int i = 3; i < n; i++) {
             if (b[i]) {
                 continue;
-            } else {
-                count++;
             }
-            int times = i + i + i;
-            while (times < b.length) {
-                b[times] = true;
-                times += i + i;
+            count++;
+            // 46341: Math.sqrt(Integer.MAX_VALUE)
+            if (i < 46341) {
+                int times = i * i;
+                if (times < n) {
+                    b[times] = true;
+                    int step = i + i;
+                    while (times < n - step) {
+                        times += step;
+                        b[times] = true;
+                    }
+                }
             }
         }
         return count;
-    }
-
-    public static void main(String[] args) {
-        L204CountPrimes primes = new L204CountPrimes();
-        System.out.println(primes.countPrimes(10));
     }
 }
