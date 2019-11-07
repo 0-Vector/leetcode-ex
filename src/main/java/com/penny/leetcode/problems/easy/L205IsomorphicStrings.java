@@ -36,6 +36,9 @@ public class L205IsomorphicStrings {
         if (s == null || t == null || s.length() != t.length()) {
             return false;
         }
+        if (s.equals(t)) {
+            return true;
+        }
         HashMap<Character, Character> ms = new HashMap<>(s.length());
         HashMap<Character, Character> mt = new HashMap<>(s.length());
         for (int i = 0; i < s.length(); i++) {
