@@ -30,6 +30,23 @@ public class L219ContainsDuplicateII {
         if (nums == null || k < 0 || nums.length == 0) {
             return false;
         }
+        HashMap<Integer, Integer> map = new HashMap<>(k);
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])) {
+                return true;
+            } else {
+                map.put(nums[i], i);
+                if (i >= k) {
+                    map.remove(nums[i - k]);
+                }
+            }
+        }
+        return false;
+    }
+    public boolean containsNearbyDuplicateV1(int[] nums, int k) {
+        if (nums == null || k < 0 || nums.length == 0) {
+            return false;
+        }
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
             if (map.containsKey(nums[i])) {
