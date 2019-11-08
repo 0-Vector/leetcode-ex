@@ -29,7 +29,30 @@ import java.util.HashMap;
  * @date 2019/11/8 10:07
  */
 public class L242ValidAnagram {
+
     public boolean isAnagram(String s, String t) {
+        if (s == null || t == null || s.length() != t.length()) {
+            return false;
+        }
+        if (s.equals(t)) {
+            return true;
+        }
+        int[] alpha = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            alpha[s.charAt(i) - 'a']++;
+        }
+        for (int i = 0; i < t.length(); i++) {
+            char ct = t.charAt(i);
+            if (alpha[ct - 'a'] == 0) {
+                return false;
+            } else {
+                alpha[ct - 'a']--;
+            }
+        }
+        return true;
+    }
+
+    public boolean isAnagramV1(String s, String t) {
         if (s == null || t == null || s.length() != t.length()) {
             return false;
         }
@@ -52,8 +75,7 @@ public class L242ValidAnagram {
     }
 
     public static void main(String[] args) {
-        String s = "aacc";
-        String t = "ccac";
+        String s =  "anagram", t = "nagaram";
         L242ValidAnagram validAnagram = new L242ValidAnagram();
         System.out.println(validAnagram.isAnagram(s, t));
     }
