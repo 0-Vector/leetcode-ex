@@ -1,7 +1,5 @@
 package com.penny.leetcode.problems.easy;
 
-import jdk.nashorn.internal.ir.IfNode;
-
 import java.util.HashMap;
 
 /**
