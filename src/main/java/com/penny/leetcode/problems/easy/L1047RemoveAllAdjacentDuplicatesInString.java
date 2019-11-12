@@ -1,7 +1,5 @@
 package com.penny.leetcode.problems.easy;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Stack;
 
 /**
@@ -31,6 +29,27 @@ public class L1047RemoveAllAdjacentDuplicatesInString {
         if (s == null || s.length() <= 1) {
             return s;
         }
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char currChar = s.charAt(i);
+            if (builder.charAt(builder.length() - 1) != currChar || builder.length() == 0) {
+                builder.append(currChar);
+            } else {
+                while (builder.charAt(builder.length() - 1) == currChar) {
+                    builder.deleteCharAt(builder.length() - 1);
+                    if (builder.length() == 0) {
+                        break;
+                    }
+                }
+            }
+        }
+        return builder.toString();
+    }
+
+    public String removeDuplicatesV1(String s) {
+        if (s == null || s.length() <= 1) {
+            return s;
+        }
         Stack<Character> stack = new Stack<>();
         for (int i = 0; i < s.length(); i++) {
             Character currChar = s.charAt(i);
@@ -52,6 +71,6 @@ public class L1047RemoveAllAdjacentDuplicatesInString {
     
     public static void main(String[] args) {
         L1047RemoveAllAdjacentDuplicatesInString duplicates = new L1047RemoveAllAdjacentDuplicatesInString();
-        System.out.println(duplicates.removeDuplicates("aaaaaa"));
+        System.out.println(duplicates.removeDuplicates("babbabac"));
     }
 }
