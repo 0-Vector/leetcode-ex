@@ -1,4 +1,4 @@
-package com.penny.leetcode.problems.easy;
+package com.penny.leetcode.problems.medium;
 
 import java.util.Iterator;
 import java.util.Stack;
