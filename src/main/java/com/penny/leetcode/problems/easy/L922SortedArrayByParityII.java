@@ -23,8 +23,12 @@ package com.penny.leetcode.problems.easy;
  * @date 2019/11/18
  */
 public class L922SortedArrayByParityII {
-    public int[] sortArrayByParityII(int[] A) {
+    public int[] sortArrayByParityII(int[] a) {
+        int length = a.length;
+        int[] ints = new int[length];
+        for (int i = 0; i < length; i++) {
 
-        return null;
+        }
+        return ints;
     }
 }
