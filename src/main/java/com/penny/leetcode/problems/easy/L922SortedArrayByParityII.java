@@ -1,5 +1,7 @@
 package com.penny.leetcode.problems.easy;
 
+import org.springframework.scheduling.annotation.EnableScheduling;
+
 /**
  * 给定一个非负整数数组 A， A 中一半整数是奇数，一半整数是偶数。
  * 对数组进行排序，以便当 A[i] 为奇数时，i 也是奇数；当 A[i] 为偶数时， i 也是偶数。
@@ -24,11 +26,26 @@ package com.penny.leetcode.problems.easy;
  */
 public class L922SortedArrayByParityII {
     public int[] sortArrayByParityII(int[] a) {
-        int length = a.length;
-        int[] ints = new int[length];
-        for (int i = 0; i < length; i++) {
-
+        int[] sortedArray = new int[a.length];
+        int oddCount = 0, evenCount = 0;
+        for (int i : a) {
+            if (i % 2 == 1) {
+                sortedArray[(oddCount << 1) + 1] = i;
+                oddCount++;
+            } else {
+                sortedArray[evenCount << 1] = i;
+                evenCount++;
+            }
         }
-        return ints;
+        return sortedArray;
+    }
+
+    public static void main(String[] args) {
+        int[] a = {1,2,3,4};
+        L922SortedArrayByParityII parityII = new L922SortedArrayByParityII();
+        int[] sortArray = parityII.sortArrayByParityII(a);
+        for (int i : sortArray) {
+            System.out.println(i);
+        }
     }
 }
