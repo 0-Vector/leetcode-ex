@@ -33,32 +33,41 @@ package com.penny.leetcode.problems.easy;
  * @date 2019/11/19 21:59
  */
 public class L687LongestUnivaluePath {
+    private int longestUnivaluePath = 0;
+
     public int longestUnivaluePath(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        if (root.left == null && root.right == null) {
-            return 0;
-        }
-        if (root.left == null) {
-            return root.val == root.right.val ? longestUnivaluePath(root.right) + 1 : longestUnivaluePath(root.right);
-        }
-        if (root.right == null) {
-            return root.val == root.left.val ? longestUnivaluePath(root.left) + 1 : longestUnivaluePath(root.left);
-        }
-        int leftUnivaluePath = longestUnivaluePath(root.left);
-        int rightUnivaluePath = longestUnivaluePath(root.right);
-        if (root.val == root.left.val && root.val == root.right.val) {
-            return leftUnivaluePath + 2 + rightUnivaluePath;
-        } else if (root.val == root.left.val) {
-            return leftUnivaluePath + 1 > rightUnivaluePath ? leftUnivaluePath + 1 : rightUnivaluePath;
-        } else if (root.val == root.right.val) {
-            return rightUnivaluePath + 1 > leftUnivaluePath ? rightUnivaluePath + 1 : leftUnivaluePath;
-        } else {
-            return leftUnivaluePath > rightUnivaluePath ? leftUnivaluePath : rightUnivaluePath;
-        }
+        univaluePathOneSide(root);
+        return longestUnivaluePath;
     }
 
+    private int univaluePathOneSide(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftUnivaluePathOneSide = univaluePathOneSide(root.left);
+        int rightUnivaluePathOneSide = univaluePathOneSide(root.right);
+        if (root.left != null) {
+            if (root.val == root.left.val) {
+                leftUnivaluePathOneSide++;
+            } else {
+                leftUnivaluePathOneSide = 0;
+            }
+        }
+        if (root.right != null) {
+            if (root.val == root.right.val) {
+                rightUnivaluePathOneSide++;
+            } else {
+                rightUnivaluePathOneSide = 0;
+            }
+        }
+//        if (root.left != null && root.right != null && root.val == root.left.val && root.val == root.right.val) {
+            longestUnivaluePath = Math.max(longestUnivaluePath, leftUnivaluePathOneSide + rightUnivaluePathOneSide);
+//        }
+        return Math.max(leftUnivaluePathOneSide, rightUnivaluePathOneSide);
+    }
 
     public class TreeNode {
         int val;
