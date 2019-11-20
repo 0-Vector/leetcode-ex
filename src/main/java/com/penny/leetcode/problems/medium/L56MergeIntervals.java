@@ -28,6 +28,7 @@ public class L56MergeIntervals {
         if (intervals == null || intervals.length == 0) {
             return intervals;
         }
+//        Arrays.sort(intervals, Comparator.comparingInt(x -> x[0]));
         Arrays.sort(intervals, (x, y) -> x[0] - y[0]);
         Stack<int[]> stack = new Stack<>();
         stack.push(intervals[0]);
@@ -45,7 +46,7 @@ public class L56MergeIntervals {
         }
         return mergedIntervals;
     }
-
+    
     public static void main(String[] args) {
         int[][] intervals = {{17,20},{1,3},{2,6},{8,10},{15,18}};
         L56MergeIntervals mergeIntervals = new L56MergeIntervals();
