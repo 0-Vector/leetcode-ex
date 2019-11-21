@@ -34,6 +34,37 @@ public class L101SymmetricTree {
         if (root == null) {
             return true;
         }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        if (root.left != null && root.right != null && root.left.val == root.right.val) {
+            queue.offer(root.left);
+            queue.offer(root.right);
+        } else{
+            return root.left == null && root.right == null;
+        }
+        while (!queue.isEmpty()) {
+            TreeNode leftFront = queue.poll();
+            TreeNode rightFront = queue.poll();
+            if (leftFront.left != null && rightFront.right != null && leftFront.left.val == rightFront.right.val) {
+                queue.offer(leftFront.left);
+                queue.offer(rightFront.right);
+            } else if (leftFront.left != null || rightFront.right != null){
+                return false;
+            }
+            if (leftFront.right != null && rightFront.left != null && leftFront.right.val == rightFront.left.val) {
+                queue.offer(leftFront.right);
+                queue.offer(rightFront.left);
+            } else if (leftFront.right != null || rightFront.left != null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isSymmetricV1(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
         if (root.left == null && root.right == null) {
             return true;
         }
