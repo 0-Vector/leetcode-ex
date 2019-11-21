@@ -28,20 +28,11 @@ public class L75SortColors {
             return;
         }
         int i = 0, redIndex = 0, blueIndex = nums.length - 1;
-        while (redIndex <= i && i <= blueIndex) {
+        while (i <= blueIndex) {
             if (nums[i] == 0) {
-                if (redIndex < i) {
-                    swap(nums, i, redIndex++);
-                } else {
-                    redIndex++;
-                    i++;
-                }
+                swap(nums, i++, redIndex++);
             } else if (nums[i] == 2){
-                if (i < blueIndex) {
-                    swap(nums, i, blueIndex--);
-                } else {
-                    break;
-                }
+                swap(nums, i, blueIndex--);
             } else {
                 i++;
             }
@@ -55,7 +46,7 @@ public class L75SortColors {
     }
 
     public static void main(String[] args) {
-        int[] nums = {2,1};
+        int[] nums = {1,2,0};
         new L75SortColors().sortColors(nums);
     }
 }
