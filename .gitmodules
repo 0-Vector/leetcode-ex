@@ -1,6 +1,0 @@
-[submodule "leetcode-tcq"]
-	path = leetcode-tcq
-	url = git@github.com:0-Vector/leetcode-tcq.git
-[submodule "leetcode-zhp"]
-	path = leetcode-zhp
-	url = git@github.com:0-Vector/leetcode-zhp.git
