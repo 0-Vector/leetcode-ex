@@ -1,5 +1,8 @@
 package com.penny.leetcode.tcq.problems.easy;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 给定两个二叉树，编写一个函数来检验它们是否相同。
  * 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
@@ -40,7 +43,14 @@ package com.penny.leetcode.tcq.problems.easy;
  */
 public class L100SameTree {
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        return true;
+        if (p == null ^ q == null) {
+            return false;
+        } else if (p == null) {
+            return true;
+        } else if (p.val != q.val) {
+            return false;
+        }
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 
     public class TreeNode {
