@@ -35,30 +35,28 @@ import java.util.Queue;
  * @date 2019/11/23 21:30
  */
 public class L113PathSumII {
+
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> rootPath = new LinkedList<>();
         if (root == null) {
             return rootPath;
-        }
-        if (root.val == sum && root.left == null && root.right == null) {
-            LinkedList<Integer> curr = new LinkedList<>();
-            curr.add(root.val);
-            rootPath.add(curr);
+        } else if (root.left == null && root.right == null) {
+            if (root.val == sum) {
+                LinkedList<Integer> curr = new LinkedList<>();
+                curr.add(root.val);
+                rootPath.add(curr);
+            }
         } else {
             int subSum = sum - root.val;
             List<List<Integer>> leftSubPath = pathSum(root.left, subSum);
             leftSubPath.forEach(sp -> {
-                if (sp != null) {
-                    sp.add(0, root.val);
-                    rootPath.add(sp);
-                }
+                sp.add(0, root.val);
+                rootPath.add(sp);
             });
             List<List<Integer>> rightSubPath = pathSum(root.right, subSum);
             rightSubPath.forEach(sp -> {
-                if (sp != null) {
-                    sp.add(0, root.val);
-                    rootPath.add(sp);
-                }
+                sp.add(0, root.val);
+                rootPath.add(sp);
             });
         }
         return rootPath;

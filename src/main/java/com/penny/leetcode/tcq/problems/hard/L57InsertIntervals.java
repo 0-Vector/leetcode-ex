@@ -50,7 +50,9 @@ public class L57InsertIntervals {
             }
         }
         int[][] ret = new int[leftCount + 1 + intervals.length - i][2];
-        System.arraycopy(intervals, 0, ret, 0, leftCount);
+        if (leftCount > 0) {
+            System.arraycopy(intervals, 0, ret, 0, leftCount);
+        }
         ret[leftCount] = newInterval;
         if (i < intervals.length) {
             System.arraycopy(intervals, i, ret, leftCount+1, intervals.length - i);
