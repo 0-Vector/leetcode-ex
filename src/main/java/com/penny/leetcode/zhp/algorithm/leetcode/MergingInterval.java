@@ -1,5 +1,7 @@
 package com.penny.leetcode.zhp.algorithm.leetcode;
 
+import com.penny.leetcode.zhp.algorithm.utils.PrintUtils;
+
 import java.util.Arrays;
 import java.util.Stack;
 
@@ -31,7 +33,6 @@ public class MergingInterval {
         }
         int [] temp;
         int [] data;
-
         Arrays.sort(intervals,(x,y) -> (x[0]-y[0]));
         for(int i=0;i<intervals.length;i++){
                 //判断是否是可以合并的区间
@@ -70,23 +71,6 @@ public class MergingInterval {
     public static void main(String[] args) {
         //int[][] data={{1,4},{2,3},{8,10},{15,18}};
         int[][] data={{1,4},{4,5}};
-        print(merge(data));
-
-
+        PrintUtils.printTwoDimension(merge(data));
     }
-
-
-
-    public  static void print(int[][] a){
-        for (int i = 0; i < a.length; i++) {
-            System.out.print(i + "  |\t");
-
-            for (int j = 0; j < a[i].length; j++) {
-                System.out.print(a[i][j] + "\t"); // "\t"是制表符
-            }
-            System.out.println();
-        }
-    }
-
-
 }
