@@ -1,5 +1,7 @@
 package com.penny.leetcode.tcq.problems.hard;
 
+import java.util.Arrays;
+
 /**
  * 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
  * /|
@@ -21,8 +23,52 @@ package com.penny.leetcode.tcq.problems.hard;
  * @date 2019/11/19 21:23
  */
 public class L42TrappingRainWater {
+
     public int trap(int[] height) {
 
         return 0;
+    }
+
+    /*
+     * 运行超时
+     */
+    public int trapV1(int[] height) {
+        if (height == null || height.length <= 1) {
+            return 0;
+        }
+        int trapCount = 0;
+        int maxHeight = Arrays.stream(height).max().getAsInt();
+        while (true) {
+            int i = 0;
+            for (; i < height.length; i++) {
+                if (height[i] > 0) {
+                    height[i]--;
+                    break;
+                }
+            }
+            int j = height.length - 1;
+            for (; j > i; j--) {
+                if (height[j] > 0) {
+                    height[j]--;
+                    break;
+                }
+            }
+            if (j - i <= 1) {
+                break;
+            }
+            for (int k = i + 1; k < j; k++) {
+                if (height[k] == 0) {
+                    trapCount++;
+                } else {
+                    height[k]--;
+                }
+            }
+        }
+        return trapCount;
+    }
+
+    public static void main(String[] args) {
+        int[] height = {10527,740,9013,1300,29680,4898,13993,15213,18182};
+        new L42TrappingRainWater().trap(height);
     }
 }
