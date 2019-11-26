@@ -122,8 +122,6 @@ public class L57InsertRegion {
             }
         }
         //处理插入到最后的情况
-
-
         int stackLen = stack.size();
         result = new int[stackLen][2];
         //int i=0;
