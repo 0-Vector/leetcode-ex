@@ -38,7 +38,7 @@ import com.penny.leetcode.zhp.algorithm.model.TreeNode;
  输出: 9
  解释: 小偷一晚能够盗取的最高金额 = 4 + 5 = 9
  */
-public class L337PlunderHouses {
+public class L337HouseRobber {
 
     public int rob(TreeNode root) {
       return  0;
