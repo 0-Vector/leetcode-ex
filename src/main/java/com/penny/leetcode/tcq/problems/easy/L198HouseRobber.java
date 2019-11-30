@@ -1,5 +1,7 @@
 package com.penny.leetcode.tcq.problems.easy;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import java.time.Instant;
 
 /**
@@ -29,9 +31,28 @@ import java.time.Instant;
 public class L198HouseRobber {
 
     /*
-     * 动态规划方法（带备忘的自顶向下）
+     * 动态规划（自底向上方法）
      */
     public int rob(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        } else if (nums.length == 1) {
+            return nums[0];
+        }
+        int[][] amount = new int[nums.length][2];
+        amount[1][0] = nums[0];
+        amount[1][1] = nums[1];
+        for (int i = 2; i < nums.length; i++) {
+            amount[i][0] = Integer.max(amount[i-1][0], amount[i-1][1]);
+            amount[i][1] = nums[i] + amount[i - 1][0];
+        }
+        return Integer.max(amount[nums.length-1][0], amount[nums.length-1][1]);
+    }
+
+    /*
+     * 动态规划方法（带备忘的自顶向下）
+     */
+    public int robV2(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         } else if (nums.length == 1) {
@@ -84,8 +105,8 @@ public class L198HouseRobber {
 
     public static void main(String[] args) {
         long t1 = Instant.now().toEpochMilli();
-//        int nums[] = {114,117,207,117,235,82,90,67,143,146,53,108,200,91,80,223,58,170,110,236,81,90,222,160,165,195,187,199,114,235,197,187,69,129,64,214,228,78,188,67,205,94,205,169,241,202,144,240};
-        int nums[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        int nums[] = {114,117,207,117,235,82,90,67,143,146,53,108,200,91,80,223,58,170,110,236,81,90,222,160,165,195,187,199,114,235,197,187,69,129,64,214,228,78,188,67,205,94,205,169,241,202,144,240};
+//        int nums[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //        int nums[] = {8, 1, 2, 9};
         int rob = new L198HouseRobber().rob(nums);
         long t2 = Instant.now().toEpochMilli();
