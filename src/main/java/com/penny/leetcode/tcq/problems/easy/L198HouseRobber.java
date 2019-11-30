@@ -1,7 +1,11 @@
 package com.penny.leetcode.tcq.problems.easy;
 
+import java.util.Arrays;
+
 /**
- * 你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。
+ * 你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，
+ * 影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，
+ * 如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。
  * 给定一个代表每个房屋存放金额的非负整数数组，计算你在不触动警报装置的情况下，能够偷窃到的最高金额。
  *
  * 示例 1:
@@ -23,14 +27,35 @@ package com.penny.leetcode.tcq.problems.easy;
  * @date 2019/11/26 18:31
  */
 public class L198HouseRobber {
+
+    
+
+    /*
+     * 朴素递归（耗时）
+     */
     public int rob(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         } else if (nums.length == 1) {
             return nums[0];
         }
-        int amount = 0;
+        return Integer.max(nums[0] + robMax(true, 1, nums), robMax(false, 1, nums));
+    }
 
-        return amount;
+    private int robMax(boolean flag, int i, int[] nums) {
+        if (i >= nums.length) {
+            return 0;
+        }
+        if (flag) {
+            return robMax(false, i + 1, nums);
+        } else {
+            return Integer.max(nums[i] + robMax(true, i + 1, nums), robMax(false, i + 1, nums));
+        }
+    }
+
+    public static void main(String[] args) {
+        int nums[] = {8, 1, 2, 9};
+        int rob = new L198HouseRobber().rob(nums);
+        System.out.println(rob);
     }
 }
