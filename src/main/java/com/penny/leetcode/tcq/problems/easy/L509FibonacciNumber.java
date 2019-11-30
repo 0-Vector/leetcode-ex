@@ -32,10 +32,36 @@ package com.penny.leetcode.tcq.problems.easy;
  * @date 2019/11/27 23:18
  */
 public class L509FibonacciNumber {
+
     /*
-     * 动态规划算法
+     * 动态规划算法二（带备忘的自顶向下）
      */
     public int fib(int n) {
+        if (n == 0) {
+            return 0;
+        } else if (n == 1) {
+            return 1;
+        }
+        int[] memo = new int[n + 1];
+        memo[1] = 1;
+        return memoFib(n, memo);
+    }
+
+    private int memoFib(int n, int[] memo) {
+        if (memo[n] > 0) {
+            return memo[n];
+        }
+        if (n == 0) {
+            return 0;
+        }
+        memo[n] = memoFib(n - 1, memo) + memoFib(n - 2, memo);
+        return memo[n];
+    }
+
+    /*
+     * 动态规划算法一（自底向上）
+     */
+    public int fibV2(int n) {
         if (n == 0) {
             return 0;
         } else if (n == 1) {
@@ -63,5 +89,11 @@ public class L509FibonacciNumber {
         } else {
             return fib(n - 1) + fib(n - 2);
         }
+    }
+
+    public static void main(String[] args) {
+        int n = 8;
+        int fib = new L509FibonacciNumber().fib(n);
+        System.out.println(fib);
     }
 }
