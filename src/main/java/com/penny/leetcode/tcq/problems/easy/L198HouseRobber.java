@@ -1,7 +1,5 @@
 package com.penny.leetcode.tcq.problems.easy;
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import java.time.Instant;
 
 /**
