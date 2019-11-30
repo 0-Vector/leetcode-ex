@@ -1,6 +1,6 @@
 package com.penny.leetcode.tcq.problems.easy;
 
-import java.util.Arrays;
+import java.time.Instant;
 
 /**
  * 你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，
@@ -28,12 +28,41 @@ import java.util.Arrays;
  */
 public class L198HouseRobber {
 
-    
+    /*
+     * 动态规划方法（带备忘的自顶向下）
+     */
+    public int rob(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        } else if (nums.length == 1) {
+            return nums[0];
+        }
+        int[][] amount = new int[nums.length][2];
+        for (int i = 0; i < amount.length; i++) {
+            amount[i][0] = -1;
+            amount[i][1] = -1;
+        }
+        return Integer.max(nums[nums.length-1] + robWithMemo(true, nums.length - 2, nums, amount), robWithMemo(false, nums.length - 2, nums, amount));
+    }
+
+    private int robWithMemo(boolean flag, int i, int[] nums, int[][] amount) {
+        if (i == 0) {
+            return flag ? 0 : nums[0];
+        }
+        if (amount[i][0] == -1) {
+            amount[i][0] = robWithMemo(false, i - 1, nums, amount);
+        }
+        if (amount[i][1] == -1){
+            amount[i][1] = nums[i] + robWithMemo(true, i - 1, nums, amount);
+        }
+        return flag ? amount[i][0] : Integer.max(amount[i][0], amount[i][1]);
+    }
+
 
     /*
      * 朴素递归（耗时）
      */
-    public int rob(int[] nums) {
+    public int robV1(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         } else if (nums.length == 1) {
@@ -54,8 +83,13 @@ public class L198HouseRobber {
     }
 
     public static void main(String[] args) {
-        int nums[] = {8, 1, 2, 9};
+        long t1 = Instant.now().toEpochMilli();
+//        int nums[] = {114,117,207,117,235,82,90,67,143,146,53,108,200,91,80,223,58,170,110,236,81,90,222,160,165,195,187,199,114,235,197,187,69,129,64,214,228,78,188,67,205,94,205,169,241,202,144,240};
+        int nums[] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+//        int nums[] = {8, 1, 2, 9};
         int rob = new L198HouseRobber().rob(nums);
+        long t2 = Instant.now().toEpochMilli();
         System.out.println(rob);
+        System.out.println(t2 - t1);
     }
 }
