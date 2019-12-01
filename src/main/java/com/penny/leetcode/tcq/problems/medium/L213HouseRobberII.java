@@ -1,5 +1,7 @@
 package com.penny.leetcode.tcq.problems.medium;
 
+import com.penny.leetcode.tcq.problems.easy.L198HouseRobber;
+
 import java.util.Arrays;
 
 /**
@@ -32,22 +34,25 @@ public class L213HouseRobberII {
         } else if (nums.length == 1) {
             return nums[0];
         }
-        return Integer.max(robMax(Arrays.copyOfRange(nums, 0, nums.length - 1)), robMax(Arrays.copyOfRange(nums, 1, nums.length)));
+//        return Integer.max(robMax(Arrays.copyOfRange(nums, 0, nums.length - 1)), robMax(Arrays.copyOfRange(nums, 1, nums.length)));
+        L198HouseRobber houseRobber = new L198HouseRobber();
+        return Integer.max(houseRobber.rob(Arrays.copyOfRange(nums, 0, nums.length - 1)), houseRobber.rob(Arrays.copyOfRange(nums, 1, nums.length)));
     }
 
-    private int robMax(int[] nums) {
-        if (nums.length == 1) {
-            return nums[0];
-        }
-        int[][] amount = new int[nums.length][2];
-        amount[1][0] = nums[0];
-        amount[1][1] = nums[1];
-        for (int i = 2; i < nums.length; i++) {
-            amount[i][0] = Integer.max(amount[i-1][0], amount[i-1][1]);
-            amount[i][1] = nums[i] + amount[i - 1][0];
-        }
-        return Integer.max(amount[nums.length-1][0], amount[nums.length-1][1]);
-    }
+
+//    private int robMax(int[] nums) {
+//        if (nums.length == 1) {
+//            return nums[0];
+//        }
+//        int[][] amount = new int[nums.length][2];
+//        amount[1][0] = nums[0];
+//        amount[1][1] = nums[1];
+//        for (int i = 2; i < nums.length; i++) {
+//            amount[i][0] = Integer.max(amount[i-1][0], amount[i-1][1]);
+//            amount[i][1] = nums[i] + amount[i - 1][0];
+//        }
+//        return Integer.max(amount[nums.length-1][0], amount[nums.length-1][1]);
+//    }
 
     public static void main(String[] args) {
         int[] nums = {1,2,3,1,4};
