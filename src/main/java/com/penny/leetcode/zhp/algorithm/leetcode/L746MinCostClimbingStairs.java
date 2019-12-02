@@ -15,6 +15,8 @@ package com.penny.leetcode.zhp.algorithm.leetcode;
  示例 1:
 
  输入: cost = [10, 15, 20]
+ f(n)=min(f(n-1),f(n-2))
+
  输出: 15
  解释: 最低花费是从cost[1]开始，然后走两步即可到阶梯顶，一共花费15。
   示例 2:
@@ -33,16 +35,32 @@ public class L746MinCostClimbingStairs {
 
     /**
      * 题解:
+     * 最优子结构：  到达第n和台阶的最小花费等于到达第n-2个台阶和到达第n-1个台阶的最小值，
+     * 边界：当n=0 时最小的代价就是0
+     *       当n=1 时最小代价是cost[1]
+     * 状态转换方程：
+     *              f(n)=min(f(n-2)+,f(n-1)) +cost[n]  n>=0
      *
      *
-     *
-     *
-     *
+     * 特殊点：当到达第n层时，由于不会再向上爬，所以不会花费
      *
      * @param cost
      * @return
      */
-    public int minCostClimbingStairs(int[] cost) {
-      return 0;
+    public static int minCostClimbingStairs(int[] cost) {
+        if (cost.length == 0) return 0;
+        int[] dp = new int[cost.length];
+        dp[0] = cost[0];
+        dp[1] = cost[1];
+        for (int i = 2; i < cost.length; i++) {
+            dp[i] = Math.min(dp[i - 1], dp[i - 2]) + cost[i];
+        }
+        return Math.min(dp[dp.length - 1], dp[dp.length - 2]);
     }
+
+    public static void main(String[] args) {
+        int dd[]={10,15,20};
+        System.out.println(L746MinCostClimbingStairs.minCostClimbingStairs(dd));
+    }
+
 }
