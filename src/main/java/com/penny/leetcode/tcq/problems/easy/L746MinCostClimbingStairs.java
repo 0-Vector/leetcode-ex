@@ -29,7 +29,31 @@ import java.util.Arrays;
  * @date 2019/12/03 09:03
  */
 public class L746MinCostClimbingStairs {
+
+    /**
+     * 动态规划（自底向上法）
+     * @param cost 花费向量
+     * @return 最小花费总和
+     */
     public int minCostClimbingStairs(int[] cost) {
+        if (cost == null || cost.length <= 1) {
+            return 0;
+        }
+        int[][] minCost = new int[cost.length][2];
+        minCost[0][1] = cost[0];
+        for (int i = 1; i < cost.length; i++) {
+            minCost[i][0] = minCost[i - 1][1];
+            minCost[i][1] = cost[i] + Integer.min(minCost[i-1][0], minCost[i-1][1]);
+        }
+        return Integer.min(minCost[cost.length-1][0], minCost[cost.length-1][1]);
+    }
+
+    /**
+     * 借助L198实现
+     * @param cost 花费向量
+     * @return 最小花费总和
+     */
+    public int minCostClimbingStairsV1(int[] cost) {
         return Arrays.stream(cost).sum() - new L198HouseRobber().rob(cost);
     }
 
