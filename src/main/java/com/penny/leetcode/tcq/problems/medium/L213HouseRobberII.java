@@ -28,6 +28,13 @@ import java.util.Arrays;
  * @date 2019/11/26 18:34
  */
 public class L213HouseRobberII {
+
+    /**
+     * 动态规划（自底向上方法）
+     * 借助L198实现
+     * @param nums
+     * @return
+     */
     public int rob(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
