@@ -38,6 +38,12 @@ package com.penny.leetcode.tcq.problems.medium;
  * @date 2019/11/26 18:45
  */
 public class L337HouseRobberIII {
+
+    /**
+     *
+     * @param root 根节点
+     * @return 最高金额
+     */
     public int rob(TreeNode root) {
 
         return 0;

@@ -28,7 +28,7 @@ import java.time.Instant;
  */
 public class L198HouseRobber {
 
-    /*
+    /**
      * 动态规划（自底向上方法）
      */
     public int rob(int[] nums) {
@@ -47,7 +47,7 @@ public class L198HouseRobber {
         return Integer.max(amount[nums.length-1][0], amount[nums.length-1][1]);
     }
 
-    /*
+    /**
      * 动态规划方法（带备忘的自顶向下）
      */
     public int robV2(int[] nums) {
@@ -78,7 +78,7 @@ public class L198HouseRobber {
     }
 
 
-    /*
+    /**
      * 朴素递归（耗时）
      */
     public int robV1(int[] nums) {
