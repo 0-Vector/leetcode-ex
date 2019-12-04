@@ -27,7 +27,7 @@ public class L1025DivisorGame {
     /**
      * 题解：
      *
-     *
+     *-
      *
      *
      * @param N
