@@ -29,12 +29,17 @@ package com.penny.leetcode.tcq.problems.easy;
  */
 public class L1025DivisorGame {
 
+    public boolean divisorGame(int n) {
+
+        return true;
+    }
+
     /**
      * 这个还需要动态规划？？？
      * @param n 正整数
      * @return 是否先手赢
      */
-    public boolean divisorGame(int n) {
+    public boolean divisorGameV1(int n) {
         return n % 2 == 0;
     }
 }

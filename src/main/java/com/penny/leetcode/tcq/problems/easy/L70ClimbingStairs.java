@@ -27,22 +27,24 @@ package com.penny.leetcode.tcq.problems.easy;
  * @date 2019/12/04
  */
 public class L70ClimbingStairs {
+    /**
+     * wayCount[i] = wayCount[i-1] + wayCount[i-2]
+     * @param n 楼梯的阶数n
+     * @return 方法的数量
+     */
     public int climbStairs(int n) {
         if (n == 1) {
             return 1;
         } else if (n == 2) {
             return 2;
         }
-        int[][] step = new int[n][2];
-        step[0][0] = 1;
-        step[0][1] = 1;
-        step[1][0] = 1;
-        step[1][1] = 2;
+        int[] wayCount = new int[n];
+        wayCount[0] = 1;
+        wayCount[1] = 2;
         for (int i = 2; i < n; i++) {
-            step[i][0] = step[i-1][1];
-            step[i][1] = step[i - 1][0] + step[i - 1][1];
+            wayCount[i] = wayCount[i-1] + wayCount[i-2];
         }
-        return step[n-1][1];
+        return wayCount[n-1];
     }
 
     public static void main(String[] args) {
