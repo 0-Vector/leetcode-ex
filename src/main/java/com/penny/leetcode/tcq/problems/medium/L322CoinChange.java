@@ -1,5 +1,7 @@
 package com.penny.leetcode.tcq.problems.medium;
 
+import java.util.Arrays;
+
 /**
  * 给定不同面额的硬币 coins 和一个总金额 amount。
  * 编写一个函数来计算可以凑成总金额所需的最少的硬币个数。
@@ -24,7 +26,27 @@ package com.penny.leetcode.tcq.problems.medium;
  */
 public class L322CoinChange {
     public int coinChange(int[] coins, int amount) {
+        if (coins == null || coins.length == 0 || amount < 0) {
+            return -1;
+        }
+        if (amount == 0) {
+            return 0;
+        }
+        Arrays.sort(coins);
+        if (amount < coins[0]) {
+            return -1;
+        }
+        for (int i = coins.length-1; i >= 0; i--) {
+            if (coinChange(coins, amount - coins[i]) != -1) {
+                return coinChange(coins, amount - coins[i]) + 1;
+            }
+        }
+        return -1;
+    }
 
-        return 0;
+    public static void main(String[] args) {
+        int[] coins = {3,5};
+        int amount = 9;
+        System.out.println(new L322CoinChange().coinChange(coins, amount));
     }
 }
