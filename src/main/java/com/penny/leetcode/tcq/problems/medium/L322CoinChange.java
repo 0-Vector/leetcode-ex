@@ -1,6 +1,9 @@
 package com.penny.leetcode.tcq.problems.medium;
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import java.util.Arrays;
+import java.util.Currency;
 
 /**
  * 给定不同面额的硬币 coins 和一个总金额 amount。
@@ -25,7 +28,38 @@ import java.util.Arrays;
  * @date 2019/12/1 11:00
  */
 public class L322CoinChange {
+    /**
+     * 动态规划
+     * @param coins 硬币面额
+     * @param amount 总金额
+     * @return 最少硬币数
+     */
     public int coinChange(int[] coins, int amount) {
+        if (coins == null || coins.length == 0) {
+            return -1;
+        }
+        int[] coinNum = new int[amount+1];
+        for (int i = 1; i < coinNum.length; i++) {
+            coinNum[i] = amount + 1;
+            for (int coin : coins) {
+                if (i - coin >= 0 && coinNum[i - coin] != -1) {
+                    coinNum[i] = Integer.min(coinNum[i], coinNum[i - coin] + 1);
+                }
+            }
+            if (coinNum[i] == amount + 1) {
+                coinNum[i] = -1;
+            }
+        }
+        return coinNum[amount];
+    }
+
+    /**
+     * 朴素递归
+     * @param coins 硬币面额
+     * @param amount 总金额
+     * @return 最少硬币数
+     */
+    public int coinChangeV1(int[] coins, int amount) {
         if (coins == null || coins.length == 0 || amount < 0) {
             return -1;
         }
@@ -45,8 +79,10 @@ public class L322CoinChange {
     }
 
     public static void main(String[] args) {
-        int[] coins = {3,5};
-        int amount = 9;
+//        int[] coins = {3,5};
+//        int amount = 9;
+        int[] coins = {186,419,83,408};
+        int amount = 6249;
         System.out.println(new L322CoinChange().coinChange(coins, amount));
     }
 }

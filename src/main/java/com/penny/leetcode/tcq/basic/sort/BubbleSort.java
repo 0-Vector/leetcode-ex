@@ -3,6 +3,11 @@ package com.penny.leetcode.tcq.basic.sort;
 import java.util.Arrays;
 
 /**
+ * 冒泡排序
+ * 最佳：n-1
+ * 最差：n(n-1)/2
+ * 时间复杂度：O(n^2)
+ *
  * @author 0-Vector
  * @date 2019/12/04 19:22
  */
