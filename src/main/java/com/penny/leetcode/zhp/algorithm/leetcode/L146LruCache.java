@@ -1,7 +1,8 @@
 package com.penny.leetcode.zhp.algorithm.leetcode;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 
 /**LRU缓存机制
   * @author zhangpeng110
@@ -26,39 +27,44 @@ LRUCache cache = new LRUCache( 2);
         cache.get(4);       // 返回  4
  */
 public class L146LruCache {
-
-    Map<Integer,Integer> map=null;
-    int [] data={};
-    int length=0;
-    int head=0;
-    int tail=0;
+   public   static LinkedHashMap<Integer,Integer> list=null;
+   public  static int length=0;
     public L146LruCache(int capacity) {
-        map=new HashMap<>();
-        data=new int[capacity];
+        list=new LinkedHashMap<Integer, Integer>(capacity,0.75f,true){
+            @Override
+            protected boolean removeEldestEntry(Map.Entry<Integer, Integer> eldest) {
+                return size()>L146LruCache.length;
+            }
+        };
         length=capacity;
     }
-
     public int get(int key) {
-     Integer i=map.get(key);
-        if(i==null){
-            return -1;
-        }
-     return data[i];
+      Integer val=list.get(key);
+       if(val==null){
+           return -1;
+       }else{
+           list.putIfAbsent(key,val);
+           return val;
+       }
+
+
     }
-
     public void put(int key, int value) {
-        if ((tail + 1) % length == head) {
-            //满了
-
-        }else{
-
-           data[tail]=value;
-           tail=(tail + 1) % length;
-           map.put(key,tail);
-        }
+        list.put(key,value);
     }
 
     public static void main(String[] args) {
+        L146LruCache cache = new L146LruCache(2);
+        cache.put(1, 1);
+        cache.put(2, 2);
+        System.out.println(cache.get(1));       // 返回  1
+        cache.put(3, 3);    // 该操作会使得密钥 2 作废
+        System.out.println(cache.get(2));       // 返回 -1 (未找到)
+        cache.put(4, 4);    // 该操作会使得密钥 1 作废
+        System.out.println(cache.get(1));       // 返回 -1 (未找到)
+        System.out.println(cache.get(3));       // 返回  3
+        System.out.println(cache.get(4));       // 返回  4
+
 
     }
 
