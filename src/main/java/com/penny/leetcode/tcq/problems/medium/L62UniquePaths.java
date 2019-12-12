@@ -41,6 +41,17 @@ public class L62UniquePaths {
      * @return 总路径数
      */
     public int uniquePaths(int m, int n) {
+
+        return 0;
+    }
+
+    /**
+     * 动态规划（自底向上）
+     * @param m 行数
+     * @param n 列数
+     * @return 总路径数
+     */
+    public int uniquePathsV1(int m, int n) {
         int[][] steps = new int[m][n];
         steps[0][0] = 1;
         for (int i = 0; i < m; i++) {
