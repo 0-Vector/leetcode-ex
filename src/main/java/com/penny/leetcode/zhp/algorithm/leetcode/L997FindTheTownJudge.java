@@ -49,9 +49,6 @@ trust[i][0] != trust[i][1]
 
  题解:
     抽象成图结构，求每个节点的出度和入度，初度等于入度等于n-1的即为法官
-
-
-
  *
  */
 public class L997FindTheTownJudge {
@@ -102,13 +99,14 @@ public class L997FindTheTownJudge {
         return sum;
     }
 
+    /**
+     * 更简单的解法:利用一维数据，存储累加值
+     * @param args
+     */
     public static void main(String[] args) {
         // [[1,3],[2,3],[3,1]]
         int[][] trust={{1,3},{1,4},{2,3},{2,4},{4,3}};
         System.out.println(L997FindTheTownJudge.findJudge(4,trust));
-
-
-
     }
 
 
