@@ -40,7 +40,7 @@ package com.penny.leetcode.tcq.problems.easy;
  * 链接：https://leetcode-cn.com/problems/find-the-town-judge
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  * @author 0-Vector
- * @date 2019/12/12 15:47
+ * @date 2019/12/12
  */
 public class L997FindTheTownJudge {
     public int findJudge(int n, int[][] trust) {
