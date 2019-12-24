@@ -54,8 +54,6 @@ public class L1221SplitAStringInBalancedStrings {
     public static void main(String[] args) {
       String   s = "LLLLRRRR";
         System.out.print(L1221SplitAStringInBalancedStrings.balancedStringSplit(s));
-
-
     }
 
 }
