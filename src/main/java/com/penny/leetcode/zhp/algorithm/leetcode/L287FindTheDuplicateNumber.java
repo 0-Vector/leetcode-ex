@@ -20,9 +20,36 @@ package com.penny.leetcode.zhp.algorithm.leetcode;
 只能使用额外的 O(1) 的空间。
 时间复杂度小于 O(n2) 。
 数组中只有一个重复的数字，但它可能不止重复出现一次。
-
- *
  */
 public class L287FindTheDuplicateNumber {
+
+
+    /**
+     * 可以抽象
+     * @param nums
+     * @return
+     */
+    public static int findDuplicate(int[] nums) {
+        int hare = nums[0];
+        int tortoise = nums[0];
+        do{
+            //兔子比乌龟快一步
+            hare = nums[nums[hare]];
+            //乌龟先走
+            tortoise = nums[tortoise];
+
+        }while (tortoise !=hare);
+        //寻找环的起点
+        int ptr1 = nums[0];
+        int ptr2 = tortoise;
+        while (ptr1 != ptr2) {
+            ptr1 = nums[ptr1];
+            ptr2 = nums[ptr2];
+        }
+
+        return ptr1;
+    }
+
+
 
 }
