@@ -1,0 +1,17 @@
+select
+  aa.Request_at as "Day",
+  round(aa.partorderNumber/aa.allorderNumber,2) as "Cancellation Rate"
+  from
+(select
+    a.Request_at,
+    sum(if(a.Status='cancelled_by_driver' or a.Status ='cancelled_by_client' ,1,0)) as partorderNumber,
+    count(1) as allorderNumber
+ from
+Trips as a
+left join Users  as b on b.Users_Id = a.Driver_Id
+left join Users  as c on c.Users_Id = a.Client_Id
+where    a.Request_at >= '2013-10-01'
+     and a.Request_at <= '2013-10-03'
+     and  b.Banned !='Yes'
+     and  c.Banned !='Yes'
+     group by a.Request_at) as aa
