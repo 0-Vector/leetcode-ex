@@ -1,6 +1,10 @@
 package com.penny.leetcode.zhp.algorithm.leetcode;
 
 import com.penny.leetcode.zhp.algorithm.model.TreeNode;
+import com.sun.javafx.collections.MappingChange;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**   相同的树
  * Creator:zhangpenga
@@ -51,4 +55,21 @@ public class SameTree {
                 &&SameTreeRecursiveFunction(p.left,q.left)
                 &&SameTreeRecursiveFunction(p.right,q.right);
     }
+
+    public static void main(String[] args) {
+
+    }
+
+    /*private static boolean isLongestSubstring(int i, int j, String s,int k) {
+        for(int a = i ; a <= j ; a++ ){
+
+
+
+        }
+
+
+
+    }*/
+
+
 }
